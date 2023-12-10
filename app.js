@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require("./routes");
+const cors = require('cors');
 
 const app = express();
 
@@ -22,6 +23,7 @@ mongoose.connect(MONGODB_URI, {
   .then(() => {
     console.log('Connected to MongoDB');
     app.use(express.json());
+    app.use(cors());
     let db = mongoose.connection;
 
         routes(
@@ -36,7 +38,7 @@ mongoose.connect(MONGODB_URI, {
 
 // ... Rest of your code remains the same
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
